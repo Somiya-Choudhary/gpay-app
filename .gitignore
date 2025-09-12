@@ -1,0 +1,24 @@
+# Maven / Spring Boot
+**/target/
+**/out/
+**/*.class
+**/*.log
+**/*.jar
+**/*.war
+
+# IntelliJ
+*.iml
+.idea/
+*.iws
+*.ipr
+
+# Node / React
+client/gpay-client/node_modules/
+client/gpay-client/build/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment / IDE config
+.env
