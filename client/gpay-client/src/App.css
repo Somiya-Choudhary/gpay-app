@@ -2,37 +2,260 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sideBySide {
+  display: flex;
+  gap: 20px;
+  justify-content: center; /* centers horizontally */
+  align-items: center;     /* centers vertically (if they have height) */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.boxContainer {
+  margin: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.boxHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.boxRow {
+  display: flex;
+  justify-content: space-between; /* text left, button right */
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+.boxInfo {
+  display: flex;
+  flex-direction: column; /* username on top, email below */
+}
+
+.email {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.dashboardContainer {
+  display: flex;
+  gap: 20px; /* space between all boxes */
+  padding: 20px;
+  justify-content: center; /* center row in page */
+  flex-wrap: wrap; /* wrap to next line if screen is small */
+}
+
+/* Make all boxes equal width */
+.boxContainer {
+  flex: 1;
+  min-width: 200px; /* ensures responsive sizing */
+}
+
+/* Each row contains 2 lists side by side */
+.rowContainer {
+  display: flex;
+  gap: 20px; /* space between lists */
+  justify-content: center;
+}
+
+
+.addBtn {
+  padding: 6px 12px;
+  background-color: #007bff; /* Bootstrap blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background-color: #0056b3;
+}
+
+.userName {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  align-items: center;    /* center horizontally */
+  gap: 10px;              /* space between items */
+  margin-bottom: 20px;
+}
+
+.userEmail {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.profileBtn,
+.transactionsBtn
+.paymentBtn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+.profileBtn,
+.transactionsBtn {
+  background-color: #28a745; /* green */
+}
+
+.profileBtn:hover,
+.transactionsBtn:hover {
+  background-color: #1e7e34;
+}
+
+.paymentBtn {
+  background-color: #007bff; /* blue */
+}
+
+.paymentBtn:hover {
+  background-color: #0056b3;
+}
+
+.paymentPageContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 30px;
 }
+
+.paymentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 300px;
+}
+
+.paymentTypeOptions {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submitBtn {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submitBtn:hover {
+  background-color: #0056b3;
+}
+
+.actionBtn {
+  padding: 4px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.actionBtn:hover {
+  background-color: #0056b3;
+}
+
+.paymentPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.paymentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 250px;
+  margin-top: 15px;
+}
+
+input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.payBtn {
+  padding: 8px 12px;
+  background-color: #28a745; /* green */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.payBtn:hover {
+  background-color: #1e7e34;
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+.profileItem {
+  font-size: 1rem;
+}
+
+.transactionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.transactionHeader, .transactionRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 10px;
+  width: 600px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.transactionHeader {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+.transactionRow:hover {
+  background-color: #f9f9f9;
+}
+
+
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

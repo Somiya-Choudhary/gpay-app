@@ -1,0 +1,28 @@
+package com.gpay.user_service.model;
+
+import com.gpay.user_service.model.User;
+
+import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+import java.util.List;
+
+@Entity
+@Table(name = "businesses")
+public class Business {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String businessName;
+    private String email;
+    private String contactNumber;
+
+    // If you want to know which users are connected to this business
+    @ManyToMany(mappedBy = "connectedBusinesses")
+    private List<User> connectedUsers;
+}

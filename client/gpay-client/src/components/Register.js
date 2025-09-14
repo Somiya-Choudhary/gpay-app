@@ -29,6 +29,18 @@ export const Register = () => {
                     />
                   </div>
 
+                  <div className="formItem">
+                    <label>Mobile: </label>
+                    <input
+                      type="tel"
+                      name="mobile"
+                      value={userData.mobile}
+                      onChange={handleChange}
+                      required
+                      placeholder="Enter mobile number"
+                    />
+                  </div>
+
                   <div>
                     <label>Password: </label>
                     <input
