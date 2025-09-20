@@ -11,10 +11,23 @@ export const useManualForm = () => {
         setUserData((prev) => ({...prev,[name]: value}))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e, url) => {
+        console.log("userData",userData)
         e.preventDefault(); // prevent page refresh
-        console.log("Form submitted:", userData);
-        navigate("/home")
+        fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(" user:", data);
+            navigate("/home");
+          })
+          .catch((e) => {
+            console.log("error:", e);
+          });
+
       }
 
       return({userData,handleChange,handleSubmit})

@@ -1,38 +1,59 @@
 package com.gpay.user_service.controller;
 
 
+import com.gpay.user_service.model.Business;
 import com.gpay.user_service.model.User;
+import com.gpay.user_service.service.Impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1")
 public class UserController {
 
+	@Autowired
+	UserServiceImpl userService;
 
 	@PostMapping("createUser")
 	public ResponseEntity<User> createUser(@RequestBody User user){
+		User createdUser = userService.createUser(user);
 
-		User newUser = new User(user.getName(), user.getEmail(), user.getContactNumber(), user.getPassword());
-
-		System.out.println("In rest controller");
-		return ResponseEntity.ok(newUser);
+		return ResponseEntity.ok(createdUser);
 	}
 
-	@GetMapping("getuser/{userEmail}")
-	public ResponseEntity<User> getUser(@PathVariable String userEmail){
-		User newUser = new User("som","is","65","st");
+	@PostMapping("loginUser")
+	public ResponseEntity<User> getUser(@RequestBody User user){
 
-		System.out.println("In rest controller2");
+		User loggedInUser = userService.getUserByEmail(user);
+
+		if (loggedInUser == null) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		} else {
+			return new ResponseEntity<>(loggedInUser, HttpStatus.OK);
+		}
+	}
+
+	@GetMapping("users")
+	public ResponseEntity<User> getAllUsers(){
+
+		User newUser = new User("som","is","65","st");
 		return new ResponseEntity<>(newUser, HttpStatus.OK);
+	}
+
+
+	public ResponseEntity<Business> getAllBusiness(){
+		Business business = new Business();
+		return new ResponseEntity<>(business, HttpStatus.OK);
 	}
 
 	@PostMapping("addFriend/{userEmail}")
 	public ResponseEntity<User> addFriend(@PathVariable String userEmail){
 		User newUser = new User("som","is","65","st");
 
-		System.out.println("In rest controller2");
 		return new ResponseEntity<>(newUser, HttpStatus.OK);
 	}
 
@@ -40,7 +61,6 @@ public class UserController {
 	public ResponseEntity<User> addBusiness(@PathVariable String userEmail){
 		User newUser = new User("som","is","65","st");
 
-		System.out.println("In rest controller2");
 		return new ResponseEntity<>(newUser, HttpStatus.OK);
 	}
 }

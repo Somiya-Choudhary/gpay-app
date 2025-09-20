@@ -7,12 +7,12 @@ export const Register = () => {
     return (
         <>
             <h2>On Register Page</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => handleSubmit(e,"http://localhost:8080/api/v1/createUser")}>
                 <div>
                     <label>User Name:</label>
                     <input
                         type="text"
-                        name="username"
+                        name="name"
                         value={userData.username}
                         onChange={handleChange}
                         required
@@ -33,7 +33,7 @@ export const Register = () => {
                     <label>Mobile: </label>
                     <input
                       type="tel"
-                      name="mobile"
+                      name="contactNumber"
                       value={userData.mobile}
                       onChange={handleChange}
                       required
