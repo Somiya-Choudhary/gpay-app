@@ -1,32 +1,26 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import { businessData } from "../DummyData/BusinessData.js";
 import { RowList } from "./RowList";
 
-export const Business = () => (
-  <RowList
-    title="Business List"
-    data={businessData}
-    nameKey="business"
-    emailKey="businessEmail"
-  />
-);
+export const Business = () => {
 
-export const ConnectedBusiness = () => {
-  const navigate = useNavigate();
+    const [businessData, setBusinessData] = useState([]);
 
-  const handlePay = (business) => {
-    navigate("/payment", { state: { recipientName: business.business } });
-  };
+    useEffect(() => {
+        fetch('http://localhost:8080/api/v1/businesses')
+            .then((res) => res.json())
+            .then((data) => {
+                setBusinessData(data)
+            })
+    },[])
 
-  return (
-    <RowList
-      title="Connected Business"
-      data={businessData}
-      nameKey="business"
-      emailKey="businessEmail"
-      buttonText="Pay"
-      onButtonClick={handlePay}
-    />
-  );
+    return (
+      <RowList
+        title="Business List"
+        data={businessData}
+        nameKey="businessName"
+        emailKey="email"
+      />
+    )
 };
+

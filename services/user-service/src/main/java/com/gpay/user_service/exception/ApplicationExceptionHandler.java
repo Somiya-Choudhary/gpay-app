@@ -54,7 +54,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 				"UNKNOWN_ERROR",
 				"An unexpected error occurred",
 				String.valueOf(status.value()),
-				status.name(),   // ✅ instead of exception.getHttpStatus()
+				status.name(),
 				request.getRequestURI(),
 				request.getMethod(),
 				LocalDateTime.now(),

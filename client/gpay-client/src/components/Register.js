@@ -7,7 +7,7 @@ export const Register = () => {
     return (
         <>
             <h2>On Register Page</h2>
-            <form onSubmit={(e) => handleSubmit(e,"http://localhost:8080/api/v1/createUser")}>
+            <form onSubmit={(e) => handleSubmit(e,"http://localhost:8080/api/v1/users/createUser")}>
                 <div>
                     <label>User Name:</label>
                     <input

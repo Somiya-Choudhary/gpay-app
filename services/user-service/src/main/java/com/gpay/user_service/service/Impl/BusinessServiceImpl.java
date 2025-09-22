@@ -17,9 +17,9 @@ public class BusinessServiceImpl implements BusinessService {
 	private BusinessRepository businessRepository;
 
 
-	public Optional<List<Business>> getAllBusiness(){
+	public List<Business> getAllBusiness(){
 
-		Optional<List<Business>> allBusiness = Optional.of(businessRepository.findAll());
+		List<Business> allBusiness = businessRepository.findAll();
 
 		return allBusiness;
 

@@ -9,10 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/users")
 public class UserController {
 
 	@Autowired
@@ -37,17 +38,16 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("users")
-	public ResponseEntity<User> getAllUsers(){
+	@GetMapping
+	public ResponseEntity<?> getAllUsers(){
 
-		User newUser = new User("som","is","65","st");
-		return new ResponseEntity<>(newUser, HttpStatus.OK);
-	}
+		List<User> users = userService.getAllUsers();
 
-
-	public ResponseEntity<Business> getAllBusiness(){
-		Business business = new Business();
-		return new ResponseEntity<>(business, HttpStatus.OK);
+		if(users.isEmpty()){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body("No Users Found");
+		}
+		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
 	@PostMapping("addFriend/{userEmail}")

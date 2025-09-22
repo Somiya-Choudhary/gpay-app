@@ -1,4 +1,5 @@
 package com.gpay.user_service.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,6 +35,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id")
     )
+    @JsonIgnore
     private List<User> connectedUsers;
 
     // User ↔ Business connection
@@ -43,6 +45,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "business_id")
     )
+    @JsonIgnore
     private List<Business> connectedBusinesses;
 
     public User(String name, String email, String contactNumber, String password) {

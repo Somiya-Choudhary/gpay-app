@@ -8,7 +8,7 @@ export const Login = () => {
     return(
         <>
             <h2>Login Page</h2>
-            <form onSubmit={(e) => handleSubmit(e, "http://localhost:8080/api/v1/loginUser")}>
+            <form onSubmit={(e) => handleSubmit(e, "http://localhost:8080/api/v1/users/loginUser")}>
                 <div>
                     <label>Email: </label>
                     <input

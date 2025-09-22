@@ -1,32 +1,26 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import { friendsData } from "../DummyData/FriendsData.js";
 import { RowList } from "./RowList";
 
-export const Friends = () => (
-  <RowList
-    title="Friends List"
-    data={friendsData}
-    nameKey="username"
-    emailKey="email"
-  />
-);
+export const Friends = () => {
 
-export const ConnectedFriends = () => {
-  const navigate = useNavigate();
+    const [friendsData, setFriendsData] = useState([]);
 
-  const handlePay = (friend) => {
-    navigate("/payment", { state: { recipientName: "Dummy" } });
-  };
+    useEffect(() => {
+        fetch('http://localhost:8080/api/v1/users')
+            .then((res) => res.json())
+            .then((data) => {
+                setFriendsData(data)
+            })
+    },[])
 
-  return (
-    <RowList
-      title="Connected Friends"
-      data={friendsData}
-      nameKey="username"
-      emailKey="email"
-      buttonText="Pay"
-      onButtonClick={handlePay}
-    />
-  );
+    return(
+      <RowList
+        title="Friends List"
+        data={friendsData}
+        nameKey="name"
+        emailKey="email"
+      />
+    )
+
 };

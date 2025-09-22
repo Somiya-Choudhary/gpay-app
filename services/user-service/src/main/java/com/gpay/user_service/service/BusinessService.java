@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface BusinessService {
 
-	Optional<List<Business>> getAllBusiness();
+	List<Business> getAllBusiness();
 }

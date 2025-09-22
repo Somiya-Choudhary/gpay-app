@@ -7,20 +7,24 @@ export const RowList = ({ title, data, nameKey, emailKey, buttonText = "+ Add", 
         <h2>{title}</h2>
       </div>
       <div className="boxContent">
-        {data.map((item, index) => (
-          <div className="boxRow" key={index}>
-            <div className="boxInfo">
-              <div className="username">{item[nameKey]}</div>
-              <div className="email">{item[emailKey]}</div>
+        {Array.isArray(data) && data.length > 0 ? (
+          data.map((item, index) => (
+            <div className="boxRow" key={index}>
+              <div className="boxInfo">
+                <div className="username">{item[nameKey]}</div>
+                <div className="email">{item[emailKey]}</div>
+              </div>
+              <button
+                className="actionBtn"
+                onClick={() => onButtonClick && onButtonClick(item)}
+              >
+                {buttonText}
+              </button>
             </div>
-            <button
-              className="actionBtn"
-              onClick={() => onButtonClick && onButtonClick(item)}
-            >
-              {buttonText}
-            </button>
-          </div>
-        ))}
+          ))
+        ) : (
+          <div>No data available</div>
+        )}
       </div>
     </div>
   );

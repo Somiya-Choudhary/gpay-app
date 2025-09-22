@@ -1,7 +1,9 @@
 // Dashboard.js
 import React from "react";
-import { Friends, ConnectedFriends } from "./Friends";
-import { Business, ConnectedBusiness } from "./Business";
+import { Friends } from "./Friends";
+import { ConnectedFriends } from "./ConnectedFriends"
+import { Business } from "./Business";
+import { ConnectedBusiness } from "./ConnectedBusinesses";
 
 export const Dashboard = () => {
   return (
