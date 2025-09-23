@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")  // "user" is a reserved keyword in SQL, better use "users"
+@Table(name = "users")  // "user" is a reserved keyword in SQL
 public class User {
 
     @Id
@@ -28,7 +28,15 @@ public class User {
     private String contactNumber;
     private String password;
 
-    // Self-join for friends
+    private double walletAmount; // double instead of String for calculations
+    private String defaultPaymentType; // wallet, credit card, debit card, UPI
+    private String kycStatus;
+
+    // Wallet transactions (debits, credits, cashback, refunds)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<WalletTransaction> walletTransactions;
+
+    // Self-join for friends / connected users
     @ManyToMany
     @JoinTable(
             name = "user_friends",
@@ -38,15 +46,25 @@ public class User {
     @JsonIgnore
     private List<User> connectedUsers;
 
-    // User ↔ Business connection
+    // User ↔ Business connection (past payments)
     @ManyToMany
     @JoinTable(
-            name = "user_business",
+            name = "user_connected_business",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "business_id")
     )
     @JsonIgnore
     private List<Business> connectedBusinesses;
+
+    // User ↔ Business subscription (active subscriptions)
+    @ManyToMany
+    @JoinTable(
+            name = "user_subscribed_business",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "business_id")
+    )
+    @JsonIgnore
+    private List<Business> subscribedBusinesses;
 
     public User(String name, String email, String contactNumber, String password) {
         this.name = name;

@@ -28,8 +28,22 @@ public class Business {
     private String email;
     private String contactNumber;
 
-    // If you want to know which users are connected to this business
+    @Enumerated(EnumType.STRING)
+    private BusinessCategory category;  // TELCO, OTT_SUBSCRIPTION, LOCAL_SHOP, E_COMMERCE
+    private String upiId;    // optional
+    private String address;  // optional
+
+    // Users who made any payment (connected users)
     @ManyToMany(mappedBy = "connectedBusinesses")
     @JsonIgnore
     private List<User> connectedUsers;
+
+    // Users who have active subscriptions
+    @ManyToMany(mappedBy = "subscribedBusinesses")
+    @JsonIgnore
+    private List<User> subscribedUsers;
+
 }
+
+
+
